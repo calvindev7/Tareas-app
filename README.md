@@ -1,16 +1,47 @@
-# TareasApp
+# Aplicación de Gestión de Tareas
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+Esta es una aplicación web simple para gestionar una lista de tareas, desarrollada con Angular y Tailwindcss.
 
-## Development server
+## Requisitos
 
-To start a local development server, run:
+- Node.js
+- Angular CLI
 
-```bash
-ng serve
-```
+## Instalación
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1. Clonar el repositorio:
+   ```bash
+   git clone <URL_DEL_REPOSITORIO>
+   cd <NOMBRE_DEL_REPOSITORIO>
+   ```
+
+2. Instalar las dependencias:
+   ```bash
+   npm install
+   ```
+
+## Ejecución
+
+1. Iniciar el servidor de desarrollo:
+   ```bash
+   ng serve
+   ```
+
+2. Abrir el navegador y navegar a `http://localhost:4200`.
+
+## Características
+
+- Añadir, editar y eliminar tareas.
+- Validaciones de formulario.
+- Paginación en la lista de tareas.
+- Integración con una API pública para obtener tareas.
+- Lazy Loading para módulos de Angular.
+
+## Capturas de Pantalla
+
+![Lista de Tareas](./src/assets/Listado.jpeg)
+![Formulario de Creación](./src/assets/Creacion.jpeg)
+![Formulario de Edición](./src/assets/Edicion.jpeg)
 
 ## Code scaffolding
 
@@ -43,16 +74,6 @@ To execute unit tests with the [Karma](https://karma-runner.github.io) test runn
 ```bash
 ng test
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
 ## Additional Resources
 

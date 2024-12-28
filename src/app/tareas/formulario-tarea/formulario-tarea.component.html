@@ -1,1 +1,90 @@
-<p>formulario-tarea works!</p>
+<div class="p-6 max-w-4xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+  <div class="flex justify-between items-center mb-6">
+    <button
+      (click)="regresar()"
+      class="bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded-md shadow-md hover:bg-gray-400 dark:hover:bg-gray-600 transition-all duration-300"
+    >
+      <span class="w-5 h-5 mr-2">
+        <i class="fas fa-arrow-left"></i>
+      </span>
+      Regresar
+    </button>
+
+    <button
+      (click)="toggleTheme()"
+      class="bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-full shadow-md hover:bg-gray-400 dark:hover:bg-gray-600 transition-all duration-300"
+    >
+      <span *ngIf="isDarkMode" class="w-6 h-6">
+        <i class="fas fa-sun"></i>
+      </span>
+      <span *ngIf="!isDarkMode" class="w-6 h-6">
+        <i class="fas fa-moon"></i>
+      </span>
+    </button>
+  </div>
+
+  <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
+    <span class="w-6 h-6 mr-2 text-blue-500">
+      <i class="fas fa-tasks"></i>
+    </span>
+    {{ isEditing ? 'Editar Tarea' : 'Crear Tarea' }}
+  </h2>
+
+  <form [formGroup]="tareaForm" (ngSubmit)="guardarTarea()" class="space-y-6">
+    <!-- Título -->
+    <div>
+      <label for="titulo" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+        Título
+      </label>
+      <div class="relative mt-1">
+        <input
+          type="text"
+          formControlName="title"
+          id="titulo"
+          class="block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        />
+        <span class="absolute right-3 top-3 w-5 h-5 text-gray-400">
+          <i class="fas fa-pencil-alt"></i>
+        </span>
+      </div>
+      <div *ngIf="tareaForm.get('title')?.invalid && tareaForm.get('title')?.touched" class="text-sm text-red-500">
+        <p *ngIf="tareaForm.get('title')?.hasError('required')">El título es obligatorio.</p>
+      </div>
+    </div>
+
+    <!-- Descripción -->
+    <div>
+      <label for="descripcion" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+        Descripción
+      </label>
+      <div class="relative mt-1">
+        <textarea
+          formControlName="body"
+          id="descripcion"
+          class="block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        ></textarea>
+        <span class="absolute right-3 top-3 w-5 h-5 text-gray-400">
+          <i class="fas fa-pencil-alt"></i>
+        </span>
+      </div>
+      <div *ngIf="tareaForm.get('body')?.invalid && tareaForm.get('body')?.touched" class="text-sm text-red-500">
+        <p *ngIf="tareaForm.get('body')?.hasError('required')">La descripción es obligatoria.</p>
+        <p *ngIf="tareaForm.get('body')?.hasError('minlength')">La descripción debe tener al menos 10 caracteres.</p>
+      </div>
+    </div>
+
+    <!-- Botón de Guardar -->
+    <div class="flex justify-end">
+      <button
+        type="submit"
+        class="flex items-center bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg shadow-md transition-all duration-300"
+        [disabled]="tareaForm.invalid"
+      >
+        <span class="w-5 h-5 mr-2">
+          <i class="fas fa-save"></i>
+        </span>
+        {{ isEditing ? 'Editar' : 'Guardar' }}
+      </button>
+    </div>
+  </form>
+</div>
